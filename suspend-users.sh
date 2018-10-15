@@ -10,7 +10,7 @@
 
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1>/Volumes/GoogleDrive/My\ Drive/IT\ Ops\ Repo/Offboarding/Offboarding\ Log/`date '+%m-%d-%Y_%H:%M:%S'`-suspend-users.log 2>&1
+exec 1><path to log directory>`date '+%m-%d-%Y_%H:%M:%S'`-suspend-users.log 2>&1
 
 SCRIPT_RUN_TIME=`date '+%m-%d-%Y %H:%M:%S'`
 echo "This script was ran on $SCRIPT_RUN_TIME"
