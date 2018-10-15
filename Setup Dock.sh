@@ -12,7 +12,7 @@ cd ~
 mkdir SetupDock
 cd SetupDock
 #Downloading script from Amazon S3
-curl -O https://s3.amazonaws.com/service-desk-utilities/dockutil-2.0.5.pkg
+curl -O <url to dockutil pkg>
 #Installing dockutil pkg
 installer -pkg ./dockutil-2.0.5.pkg -target /
 #
@@ -21,7 +21,7 @@ installer -pkg ./dockutil-2.0.5.pkg -target /
 #
 dockutil --remove all --no-restart
 #
-# Adding Kabbage applications to dock
+# Adding Company applications to dock
 #
 # Adding 'Mail' to dock
 dockutil --add /Applications/Mail.app --no-restart
