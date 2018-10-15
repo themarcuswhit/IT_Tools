@@ -1,7 +1,14 @@
 #! /bin/bash
 #
+# Create G Suite Users 
 # Created by Marcus Whitaker
 # Date: May 17, 2018
+
+#Setting Log information
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1> <path to log>/`date '+%m-%d-%Y_%H:%M:%S'`-create-users.log 2>&1
+
 
 # Downloading CSV and creating G Suite accounts with the following attributes: Account Name, Password, First Name, Last Name, Manager, OU, Office Location, Job Title, and Department
 echo "Downloading CSV and creating G Suite accounts..."
