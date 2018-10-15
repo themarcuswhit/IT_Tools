@@ -5,7 +5,7 @@
 
 # Downloading CSV and creating G Suite accounts with the following attributes: Account Name, Password, First Name, Last Name, Manager, OU, Office Location, Job Title, and Department
 echo "Downloading CSV and creating G Suite accounts..."
-gam csv /Volumes/GoogleDrive/My\ Drive/IT\ Ops\ Repo/Onboarding/new-hire.csv gam create user "~accountName" password "~password" changepassword on firstname "~firstName" lastname "~lastName" relation manager "~manager" organization location "~location" title "~jobTitle" department "~function" primary org "Employees"
+gam csv <path to CSV> gam create user "~accountName" password "~password" changepassword on firstname "~firstName" lastname "~lastName" relation manager "~manager" organization location "~location" title "~jobTitle" department "~function" primary org "Employees"
 
 #Waiting for user creation to finsh
 echo "."
@@ -85,6 +85,6 @@ while read line; do
 
 
 
-done < /Volumes/GoogleDrive/My\ Drive/IT\ Ops\ Repo/Onboarding/new-hire.csv
+done < <path to CSV>
 
 echo "G Suite user creation has finished"
