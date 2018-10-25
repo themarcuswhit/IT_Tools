@@ -3,12 +3,27 @@
 # Create G Suite Users 
 # Created by Marcus Whitaker
 # Date: May 17, 2018
+# Note: This script uses GAM (Googles Apps Manager CLI). Please ensure you have this installed before using this. 
+
+# Setting script to fail if you’re trying to reference a variable that hasn’t been set.
+set -u
+# Setting script to exit immediately if a command fails.
+set -e
+# Setting pipeline to fail if any of the commands in the pipeline failed.
+set -o pipefail
 
 #Setting Log information
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1> <path to log>/`date '+%m-%d-%Y_%H:%M:%S'`-create-users.log 2>&1
 
+#Establishing what the the script was ran for visibility purposes.
+SCRIPT_RUN_TIME=`date '+%m-%d-%Y %H:%M:%S'`
+echo "This script was ran on $SCRIPT_RUN_TIME"
+echo "."
+echo "."
+echo "."
+echo "."
 
 # Downloading CSV and creating G Suite accounts with the following attributes: Account Name, Password, First Name, Last Name, Manager, OU, Office Location, Job Title, and Department
 echo "Downloading CSV and creating G Suite accounts..."
@@ -21,6 +36,7 @@ echo "."
 echo "."
 echo "Waiting for user creation to finsh..."
 wait
+echo "G Suite account creation finished at `date '+%m-%d-%Y %H:%M:%S'`"
 
 #Add newly created users to Google Groups based on job Title
 
@@ -94,4 +110,4 @@ while read line; do
 
 done < <path to CSV>
 
-echo "G Suite user creation has finished"
+echo "G Suite employee onboarding has finished at `date '+%m-%d-%Y %H:%M:%S'`"
