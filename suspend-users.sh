@@ -26,7 +26,7 @@ set -o pipefail
 
 function logAction {
     logTime=$(date "+%Y-%m-%d - %H:%M:%S:")
-    echo "$logTime" "$1" >> /Volumes/GoogleDrive/My\ Drive/IT\ Ops\ Repo/Offboarding/Offboarding\ Log/`date '+%m-%d-%Y'`-suspend-users.log
+    echo "$logTime" "$1" >> /<path to log>/`date '+%m-%d-%Y'`-suspend-users.log
 }
 
 #Setting time script was ran at for audit purposes
