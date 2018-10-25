@@ -17,7 +17,7 @@ exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
 exec 1> <path to log>/`date '+%m-%d-%Y_%H:%M:%S'`-create-users.log 2>&1
 
-#Establishing what the the script was ran for visibility purposes.
+#Establishing what time the script was ran for visibility purposes.
 SCRIPT_RUN_TIME=`date '+%m-%d-%Y %H:%M:%S'`
 echo "This script was ran on $SCRIPT_RUN_TIME"
 echo "."
