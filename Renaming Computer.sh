@@ -32,5 +32,5 @@ sudo scutil --set ComputerName $COMPUTER_NAME
 echo "You have renamed this computer to $COMPUTER_NAME ..."
 
 #Bind computer to Kabbage domain
-echo "Binding computer to Kabbage domain"
+echo "Binding computer to <company> domain"
 sudo adjoin --enableAppleIDGenScheme --workstation --user <user here> --password <password here>  <domain name>
