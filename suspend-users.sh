@@ -4,6 +4,15 @@
 # Purpose: Suspend users in G Suite
 # Created by Marcus Whitaker
 # Date: May 24, 2018
+# Notes: 
+# 1. This script uses GAM (Google Apps Manager CLI). Please ensure you have this installed before using this script.
+# 2. There are formatted texts in this script. Review below for format codes:
+# \033[101m = red background 
+# \033[37m  = light grey 
+# \033[4m   = underlined 
+# \033[93m  = yellow
+# \033[32m  = dark green text
+# To change these colors, visit https://misc.flogisoft.com/bash/tip_colors_and_formatting to view other formatting codes
 
 
 # Setting script to fail if you’re trying to reference a variable that hasn’t been set.
