@@ -1,6 +1,6 @@
 #! /bin/bash
 #
-# Create G Suite Users 
+# Create G Suite Users and add to Google Groups based on Function
 # Created by Marcus Whitaker
 # Date: May 17, 2018
 # Note: This script uses GAM (Googles Apps Manager CLI). Please ensure you have this installed before using this. 
