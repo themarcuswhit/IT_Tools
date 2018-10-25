@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Name: suspend-users.sh
+# Name: offboard-gsuite-users.sh
 # Purpose: Suspend users in G Suite
 # Created by Marcus Whitaker
 # Date: May 24, 2018
