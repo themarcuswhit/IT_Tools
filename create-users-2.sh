@@ -47,7 +47,7 @@ echo "."
 echo "."
 
 #Add newly created users to Google Groups based on job Title
-    echo "Adding newly created users to email groups..."
+    printf -- "Adding newly created users to email groups..."
 
 #Parsing CSV to add new users to Google Groups based on job funtion and office location
 while read line; do
