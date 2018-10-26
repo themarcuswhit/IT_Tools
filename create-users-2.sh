@@ -32,7 +32,7 @@ echo "."
 echo "."
 
 # Downloading CSV and creating G Suite accounts with the following attributes: Account Name, Password, First Name, Last Name, Manager, OU, Office Location, Job Title, and Department
-    printf -- "Downloading CSV and creating G Suite accounts..."
+    printf -- "Downloading CSV and creating G Suite accounts with specified user attributes..."
     gam csv <path to CSV> gam create user "~accountName" password "~password" changepassword on firstname "~firstName" lastname "~lastName" relation manager "~manager" organization location "~location" title "~jobTitle" department "~function" primary org "<specify desired OU" 
 
 #Waiting for user creation to finsh
