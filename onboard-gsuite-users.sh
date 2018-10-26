@@ -31,6 +31,7 @@ function logAction {
 
 #Establishing what time the script was ran for visibility purposes.
      SCRIPT_RUN_TIME=`date '+%m-%d-%Y %H:%M:%S'`
+     printf -- "\033[37m You are running onboard-gsuite-users.sh to create new G Suite accounts"
      printf -- "\033[37m This script was initiated on \033[101m $SCRIPT_RUN_TIME \033[0m\n"
      
 #Logging time onboard-gsuite-users.sh was initiated
