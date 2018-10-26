@@ -1,12 +1,14 @@
 #!/bin/bash
 #
 # Name: offboard-gsuite-users.sh
-# Purpose: Suspend users in G Suite
+# Purpose: Suspend users in G Suite, remove from groups, transfer G Drive to Hiring Manager, transfer Calendar to Hiring Manager, 
 # Created by Marcus Whitaker
 # Date: May 24, 2018
 # Notes: 
-# 1. This script uses GAM (Google Apps Manager CLI). Please ensure you have this installed before using this script.
-# 2. There are formatted texts in this script. Review below for format codes:
+# 1. This script uses GAM (Google Apps Manager CLI) to connect with G Suite. Please ensure you have this installed before using this script.
+#    * visit https://github.com/jay0lee/GAM/wiki for documentation on GAM 
+# 2. This script has a log function built into it. You can designate the desired location of this log to your choosing.
+# 3. There are formatted texts in this script. Review below for format codes:
 # \033[101m = red background 
 # \033[37m  = light grey 
 # \033[4m   = underlined 
@@ -26,74 +28,97 @@ set -o pipefail
 
 function logAction {
     logTime=$(date "+%Y-%m-%d - %H:%M:%S:")
-    echo "$logTime" "$1" >> /<path to log>/`date '+%m-%d-%Y'`-suspend-users.log
+    echo "$logTime" "$1" >> /<path to log>/`date '+%m-%d-%Y'`-offboard-gsuite-users.log
 }
 
 #Setting time script was ran at for audit purposes
   SCRIPT_RUN_TIME=`date '+%m-%d-%Y %H:%M:%S'`
-  printf -- "\033[37m offboard-gsuite-users.sh began at \033[101m $SCRIPT_RUN_TIME \033[0m\n"
-  logAction "Offboarding script initiated."
-  echo "."
-  echo "."
-  echo "."
-  echo "."
+        printf -- "\033[37m offboard-gsuite-users.sh began at \033[101m $SCRIPT_RUN_TIME \033[0m\n"
 
-  #Retrieving username of account that needs to be suspended
-    printf -- "\033[4m Enter in the username of the account you are suspending \033[0m\n:"
-    read USERNAME
+#Logging time script was started
+  logAction "Offboarding script initiated."
+  printf "."
+  printf "."
+  printf "."
+  printf "."
+
+#Setting variable of the account that needs to be suspended
+        printf -- "\033[4m Enter in the username of the account you are suspending \033[0m\n:"
+        read USERNAME
+        
+#Logging username entered for suspension
     logAction "Offboarding Employee: $USERNAME"
 
-  #Retrieving username of hiring manager for suspended employee
-    printf -- "\033[4m Enter in the Hiring Manager's username of the offboarding employee \033[0m\n:"
-    read HIRING_MANAGER
+#Setting variable for the username of the hiring manager for suspended employee
+        printf -- "\033[4m Enter in the Hiring Manager's username of the offboarding employee \033[0m\n:"
+        read HIRING_MANAGER
+        
+ #Logging hiring manager entered for offboarding employee
     logAction "Hiring Manager: $HIRING_MANAGER"
-    echo "."
-    echo "."
-    echo "."
+    printf "."
+    printf "."
+    printf "."
 
-    printf -- "\033[93m Suspending $USERNAME in G Suite ... \033[0m\n"
-    gam update user $USERNAME suspended on
+#Suspending user specified in $USERNAME variable in G Suite
+        printf -- "\033[93m Suspending $USERNAME in G Suite ... \033[0m\n"
+        gam update user $USERNAME suspended on
     wait
-    printf -- "\033[32m Suspension completed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+        printf -- "\033[32m Suspension completed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+        
+#Logging time suspension completed
     logAction "$USERNAME suspended"
-    echo "."
-    echo "."
-    echo "."
+    printf "."
+    printf "."
+    printf "."
 
-  wait
-
-    printf -- "\033[93m Deleting groups $USERNAME is a member of... \033[0m\n"
-    gam user $USERNAME delete groups
     wait
-    printf "\033[32m Groups removed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+
+#Deleting groups of account specified in $USERNAME variable is a member of in G Suite
+        printf -- "\033[93m Deleting groups $USERNAME is a member of... \033[0m\n"
+        gam user $USERNAME delete groups
+    wait
+        printf "\033[32m Groups removed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+   
+#Logging time groups were removed from suspended user
     logAction "Google Groups removed from $USERNAME"
-    echo "."
-    echo "."
-    echo "."
+    printf "."
+    printf "."
+    printf "."
 
-  wait
-
-    printf -- "\033[93m Transferring $USERNAME's Google Drive data to $HIRING_MANAGER... \033[0m\n"
-    gam create datatransfer $USERNAME gdrive $HIRING_MANAGER privacy_level shared,private
     wait
-    printf -- "\033[32m Google Drive transfer request completed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+
+#Transferring all G Drive data from suspended user to their Hiring Manager
+        printf -- "\033[93m Transferring $USERNAME's Google Drive data to $HIRING_MANAGER... \033[0m\n"
+        gam create datatransfer $USERNAME gdrive $HIRING_MANAGER privacy_level shared,private
+    wait
+        printf -- "\033[32m Google Drive transfer request completed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+     
+ #Logging time G Drive data transfer was submitted
     logAction "$USERNAME's Google Drive data transferred to $HIRING_MANAGER"
-    echo "."
-    echo "."
-    echo "."
+    printf "."
+    printf "."
+    printf "."
 
   wait
 
-    printf -- "\033[93m Transferring $USERNAME's Google Calendar data to $HIRING_MANAGER... \033[0m\n"
-    gam create datatransfer $USERNAME calendar $HIRING_MANAGER release_resources true
+#Transferring all calendar data from suspended user to their Hiring Manager
+        printf -- "\033[93m Transferring $USERNAME's Google Calendar data to $HIRING_MANAGER... \033[0m\n"
+        gam create datatransfer $USERNAME calendar $HIRING_MANAGER release_resources true
     wait
-    printf -- "\033[32m Google Calendar transfer request completed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+        printf -- "\033[32m Google Calendar transfer request completed at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+    
+#Logging time Calendar data transfer was submitted
     logAction "$USERNAME's calendar transferred to $HIRING_MANAGER"
-    echo "."
-    echo "."
-    echo "."
+    printf "."
+    printf "."
+    printf "."
 
   wait
 
-    printf -- "\033[32m Offboarding process has completed for $USERNAME at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
-    logAction "Offboarding Script finished"
+        printf -- "\033[32m Offboarding process has completed for $USERNAME at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+#Logging time offboard-gsuite-users.sh finished
+   logAction "Offboarding Script finished"
+   
+#
+#
+#End of script
