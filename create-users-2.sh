@@ -36,9 +36,6 @@ echo "."
     gam csv <path to CSV> gam create user "~accountName" password "~password" changepassword on firstname "~firstName" lastname "~lastName" relation manager "~manager" organization location "~location" title "~jobTitle" department "~function" primary org "<specify desired OU" 
 
 #Waiting for user creation to finsh
-echo "."
-echo "."
-echo "."
     printf -- "Waiting for user creation to finsh..."
 wait
     printf -- "G Suite account creation finished at `date '+%m-%d-%Y %H:%M:%S'`"
