@@ -91,7 +91,7 @@ echo "."
 
 done < <path to CSV>
 
-    printf -- "\033[32m G Suite employee onboarding has finished at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
+    printf -- "\033[4m \033[32m G Suite employee onboarding has finished at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
 logAction "onboard-gsuite-users.sh has completed."
 
 #
