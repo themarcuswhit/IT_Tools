@@ -49,7 +49,13 @@ wait
     printf -- "\033[32m G Suite account creation finished at `date '+%m-%d-%Y %H:%M:%S'` \033[0m\n"
 
 #Logging time that G Suite Account creation finished for users specified in CSV
-logAction "G Suite user creation completed for users specified in imported CSV"
+while read line || [[ $line ]]; do
+  accountName=$(echo "$line" | awk -F"," '{print $4}')
+
+    if [[ "$accountName" != "accountName" ]]; then
+        logAction "G Suite user creation completed for $accountName"
+    fi
+done < /path/to.csv
 echo "."
 echo "."
 echo "."
