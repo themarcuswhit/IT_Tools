@@ -75,7 +75,7 @@ while read line; do
 
     printf -- "Finished adding new users to Google Groups"
 
-#logging time users were finished being added to Google Groups
+#Logging time users were finished being added to Google Groups
 logAction "Finished added new users specified in CSV to Google Groups"
 echo "."
 echo "."
