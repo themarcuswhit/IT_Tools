@@ -59,7 +59,7 @@ function logAction {
     printf "."
     printf "."
 
-#Suspending user specified in $USERNAME variable in G Suite
+#Suspending user specified in $USERNAME variable in G Suite and moving to Suspended Accounts OU
         printf -- "\033[93m Suspending $USERNAME in G Suite ... \033[0m\n"
         gam update user $USERNAME suspended on org Suspended/ Accounts
     wait
