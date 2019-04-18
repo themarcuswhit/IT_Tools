@@ -7,17 +7,17 @@
 echo "Setting variables for computer name..."
 
 CITY=`/usr/bin/osascript <<'EOT'
-set theCityChoices to {"atl", "sf", "nyc", "den", "blr"}
-set theCity to choose from list theCityChoices with prompt "Select the city this computer will be in:" default items {"atl"}
-theCity                                                  
-EOT`
+  set theCityChoices to {"atl", "sf", "nyc", "den", "blr"}
+  set theCity to choose from list theCityChoices with prompt "Select the city this computer will be in:" default items {"atl"}
+  theCity                                                  
+  EOT`
 
 ASSET_NUMBER=`/usr/bin/osascript <<'EOT'
-tell application "System Events"
-activate
-set ASSET_NUMBER to text returned of (display dialog "Please input the asset number for this computer" default answer "" with icon 2)
-end tell
-EOT`
+  tell application "System Events"
+  activate
+  set ASSET_NUMBER to text returned of (display dialog "Please input the asset number for this computer" default answer "" with icon 2)
+  end tell
+  EOT`
 
 
 COMPUTER_NAME=${CITY}-${ASSET_NUMBER}-osx
